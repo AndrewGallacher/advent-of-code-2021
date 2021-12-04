@@ -1,5 +1,5 @@
-x = open('test.txt', 'r')
 x = open('input.txt', 'r')
+x = open('test.txt', 'r')
 
 i_a = []
 for line in x.readlines():
@@ -67,23 +67,10 @@ def keep_rows_with_column_value(list, column, value):
         if int(item[column]) == value:
             newList.append(item)
 
-    #print('rrbcv', column, value, newList)
-
     return newList
 
-def oxygen_generator_rating(list):
+def get_rating(list, get_value):
     digitLength = getDigitLength(list)
-
-    newList = list[:]
-    for column in range(digitLength):
-        most_common_digit = get_most_common_value(newList, column)
-        newList = keep_rows_with_column_value(newList, column, most_common_digit)
-
-    return newList[0]
-
-def co2_scrubber_rating(list):
-    digitLength = getDigitLength(list)
-    # print('2', list)
 
     newList = list[:]
     column = 0
@@ -91,19 +78,17 @@ def co2_scrubber_rating(list):
         if column > digitLength:
             raise Exception('We have run out of digits')
 
-        least_common_digit = get_least_common_value(newList, column)
-        #print (column + 1, newList, least_common_digit)
-        newList = keep_rows_with_column_value(newList, column, least_common_digit)
-        #print(column + 1, newList)
+        value = get_value(newList, column)
+        newList = keep_rows_with_column_value(newList, column, value)
         column += 1
 
-    return newList[0]
-                
+    return newList[0]    
+
 print('BEFORE')
 print(i_a)
 
-oxygen_generator_rating_binary = oxygen_generator_rating(i_a)
-co2_scrubber_rating_binary = co2_scrubber_rating(i_a)
+oxygen_generator_rating_binary = get_rating(i_a, get_most_common_value)
+co2_scrubber_rating_binary = get_rating(i_a, get_least_common_value)
 
 print('AFTER')
 print('oxygen_generator_rating (binary)', oxygen_generator_rating_binary)
