@@ -8,10 +8,8 @@ for line in input.readlines():
 print(value)
 
 count = 0
-for index in range(1, len(value)):
-    if value[index] > value[index - 1]:
+for index in range(3, len(value)):
+    if value[index] > value[index - 3]:
         count += 1
 
 print (count) 
-
- 
