@@ -23,17 +23,32 @@ def is_vertical(vent_line):
 
 def update_field_with_vent_line(field, vent_line):
 
-    min_x = min(vent_line[0][0], vent_line[1][0])
-    max_x = max(vent_line[0][0], vent_line[1][0])
-    min_y = min(vent_line[0][1], vent_line[1][1])
-    max_y = max(vent_line[0][1], vent_line[1][1])
-    
-    print(min_x, max_x, min_y, max_y)
+    # Get co-ordinates of first point
+    x = vent_line[0][0]
+    y = vent_line[0][1]
 
-    for x in range(min_x - 1, max_x):
-        for y in range(min_y - 1, max_y):
-            print(x, y)
-            field[x][y] += 1
+    # Get offset to second point
+    x_offset = 0
+    if vent_line[1][0] > x:
+        x_offset = 1
+    elif vent_line[1][0] < x:
+        x_offset = -1
+
+    y_offset = 0
+    if vent_line[1][1] > y:
+        y_offset = 1
+    elif vent_line[1][1] < y:
+        y_offset = -1
+
+    finished = False
+    while not finished:
+        print('x', x, 'y', y)
+        field[x][y] += 1 
+        if x == vent_line[1][0] and y == vent_line[1][1]:
+            finished = True
+        else:
+            x += x_offset
+            y += y_offset
 
     return
 
@@ -42,7 +57,6 @@ def update_field_with_vent_line(field, vent_line):
 input = open('test.txt', 'r')
 input = open('input.txt', 'r')
 input_lines = map(lambda line: line.replace('\n', '').strip(), input.readlines())
-
 
 field_size = 0
 vent_lines = []
@@ -66,20 +80,17 @@ print(vent_lines)
 print(field_size)
 
 field = []
-for x in range(field_size):
+for x in range(field_size + 1):
     row = []
-    for y in range(field_size):
+    for y in range(field_size + 1):
         row.append(0)
     field.append(row)
 
 for vent_line in vent_lines:
-    if is_vertical(vent_line) or is_horizontal(vent_line): 
-        update_field_with_vent_line(field, vent_line)
+    #if is_vertical(vent_line) or is_horizontal(vent_line): 
+    update_field_with_vent_line(field, vent_line)
 
 print(field)
 
 dangerous_point_count = get_dangerous_point_count(field, 2)
 print('dangerous_point_count:', dangerous_point_count)
-
-
- 
