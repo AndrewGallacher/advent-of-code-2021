@@ -27,7 +27,7 @@ def mark_called_numnber(card, number):
                 card[row][column] = None
                 return
     
-#---------------------------------------------------
+# ---------------------------------------------------
 
 input = open('test.txt', 'r')
 input = open('input.txt', 'r')

@@ -1,6 +1,10 @@
-# Day 5
+# Day 5: Hydrothermal Venture
 
 def get_dangerous_point_count(field, min_overlap_count):
+    """ Gets the count of dangerous points in the given field
+        field: 2-d array of counts - each element is the number of vent lines at that point
+        min_overlap_count: the minmum number of vent lines that is deemed dangerous
+    """
     dangerous_point_count = 0
     for row in field:
         for cell in row:
@@ -10,15 +14,17 @@ def get_dangerous_point_count(field, min_overlap_count):
     return dangerous_point_count
 
 def is_horizontal(vent_line):
+    """ Determines if the given line is horizontal """
     if vent_line[0][0] == vent_line[1][0]:
         return True
 
     return False
 
 def is_vertical(vent_line):
+    """ Determines if the given line is vertical """
     if vent_line[0][1] == vent_line[1][1]:
         return True
-    
+
     return False
 
 def update_field_with_vent_line(field, vent_line):
@@ -42,8 +48,7 @@ def update_field_with_vent_line(field, vent_line):
 
     finished = False
     while not finished:
-        print('x', x, 'y', y)
-        field[x][y] += 1 
+        field[x][y] += 1
         if x == vent_line[1][0] and y == vent_line[1][1]:
             finished = True
         else:
@@ -52,7 +57,7 @@ def update_field_with_vent_line(field, vent_line):
 
     return
 
-#---------------------------------------------------
+# ---------------------------------------------------
 
 input = open('test.txt', 'r')
 input = open('input.txt', 'r')
@@ -61,8 +66,6 @@ input_lines = map(lambda line: line.replace('\n', '').strip(), input.readlines()
 field_size = 0
 vent_lines = []
 for line in input_lines:
-    print (line)
-    
     vent_line = []
     for point in line.split('->'):
         x = int(point.split(',')[0])
@@ -77,7 +80,7 @@ for line in input_lines:
     vent_lines.append(vent_line)
 
 print(vent_lines)
-print(field_size)
+print('field size:', field_size)
 
 field = []
 for x in range(field_size + 1):
@@ -87,10 +90,8 @@ for x in range(field_size + 1):
     field.append(row)
 
 for vent_line in vent_lines:
-    #if is_vertical(vent_line) or is_horizontal(vent_line): 
+    # if is_vertical(vent_line) or is_horizontal(vent_line):
     update_field_with_vent_line(field, vent_line)
-
-print(field)
 
 dangerous_point_count = get_dangerous_point_count(field, 2)
 print('dangerous_point_count:', dangerous_point_count)
