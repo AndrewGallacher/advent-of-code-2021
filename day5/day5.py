@@ -1,6 +1,8 @@
 # Day 5: Hydrothermal Venture
 # ---------------------------------------------------
-from functions import * 
+from functions import *
+
+include_diagonals = True
 
 input = open('test.txt', 'r')
 input = open('input.txt', 'r')
@@ -13,7 +15,7 @@ for line in input_lines:
     for point in line.split('->'):
         x = int(point.split(',')[0])
         y = int(point.split(',')[1])
-        vent_line.append([x, y])
+        vent_line.append(Point(x, y))
 
         if x > field_size:
             field_size = x
@@ -33,8 +35,8 @@ for x in range(field_size + 1):
     field.append(row)
 
 for vent_line in vent_lines:
-    # if is_vertical(vent_line) or is_horizontal(vent_line):
-    update_field_with_vent_line(field, vent_line)
+    if is_vertical(vent_line) or is_horizontal(vent_line) or include_diagonals:
+        update_field_with_vent_line(field, vent_line)
 
 dangerous_point_count = get_dangerous_point_count(field, 2)
 print('dangerous_point_count:', dangerous_point_count)
