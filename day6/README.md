@@ -1,6 +1,4 @@
-# Day 6
-
---- Day 6: Lanternfish ---
+# Day 6: Lanternfish
 
 The sea floor is getting steeper. Maybe the sleigh keys got carried this way?
 
@@ -57,3 +55,27 @@ Find a way to simulate lanternfish. How many lanternfish would there be after 80
 Your puzzle answer was 375482.
 
 The first half of this puzzle is complete! It provides one gold star: *
+
+## Part Two
+
+Suppose the lanternfish live forever and have unlimited food and space. Would they take over the entire ocean?
+
+After 256 days in the example above, there would be a total of 26984457539 lanternfish!
+
+How many lanternfish would there be after 256 days?
+
+Your puzzle answer was 1689540415957.
+
+Both parts of this puzzle are complete! They provide two gold stars: **
+
+At this point, you should return to your Advent calendar and try another puzzle.
+
+If you still want to see it, you can get your puzzle input.
+
+You can also [Shareon Twitter Mastodon] this puzzle.
+
+## My notes
+So, the simplistic solution is to maintain an array with the each of each fish.
+This does not scale well since it grows exponentially.
+The better solution is maintain a count of the fish at each stage and work out how those
+totals change each generation.
