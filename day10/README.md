@@ -57,8 +57,6 @@ Find the first illegal character in each corrupted line of the navigation subsys
 
 Your puzzle answer was 392097.
 
-The first half of this puzzle is complete! It provides one gold star: *
-
 ## Part Two
 
 Now, discard the corrupted lines. The remaining lines are incomplete.
@@ -102,8 +100,6 @@ Autocomplete tools are an odd bunch: the winner is found by sorting all of the s
 
 Find the completion string for each incomplete line, score the completion strings, and sort the scores. What is the middle score?
 
-Answer:
+Your puzzle answer was 4263222782.
 
-Although it hasn't changed, you can still get your puzzle input.
-
-You can also [Shareon Twitter Mastodon] this puzzle.
+Both parts of this puzzle are complete! They provide two gold stars: **
