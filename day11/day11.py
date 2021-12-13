@@ -84,17 +84,22 @@ def apply_step(cavern):
 
 # ------------------------------------
 
+cavern = parse_input('test.txt')
 cavern = parse_input('input.txt')
 print('initial')
 format_cavern(cavern)
 print()
 
 total_flash_count = 0
-for step in range(100):
+step = 0
+while step < 1000:
+    step += 1
     flash_count = apply_step(cavern)
     total_flash_count += flash_count
-    print('step', step + 1, flash_count)
+    print('step', step, flash_count)
     format_cavern(cavern)
     print()
+    if flash_count == 100:
+        break
 
 print('total energy:', total_flash_count)
